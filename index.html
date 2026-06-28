@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vishwash Dahal | Video Editor & Web Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e1a;
+    --bg-card:#11162a;
+    --bg-card-2:#0f1426;
+    --border:rgba(255,255,255,0.08);
+    --text:#ffffff;
+    --text-dim:#9aa3b8;
+    --text-dimmer:#6b7388;
+    --blue:#2f6bff;
+    --blue-light:#4f8cff;
+    --purple:#7c5cff;
+    --green:#22c55e;
+    --yellow:#facc15;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    width:100%;
+  }
+  h1,h2,h3,h4,.brand,.logo{font-family:'Poppins',sans-serif;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .container{
+    max-width:1280px;
+    margin:0 auto;
+    padding:0 24px;
+    width:100%;
+  }
+  .eyebrow{
+    color:var(--blue-light);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    margin-bottom:10px;
+    display:block;
+  }
+
+  /* ===== Background ambient ===== */
+  body{
+    background-image:
+      radial-gradient(circle at 78% 8%, rgba(124,92,255,0.18), transparent 40%),
+      radial-gradient(circle at 50% 0%, rgba(47,107,255,0.12), transparent 45%);
+    background-attachment:scroll;
+  }
+
+  /* Scope overflow clipping to individual sections instead of html/body,
+     so the sticky navbar keeps working everywhere */
+  section, header.nav, footer{
+    overflow-x:hidden;
+  }
+
+  /* ===== Navbar ===== */
+  header.nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(10,14,26,0.94);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 24px;
+    max-width:1280px;
+    margin:0 auto;
+  }
+  .logo{
+    font-size:19px;
+    font-weight:700;
+  }
+  .logo span{color:var(--blue-light);}
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:34px;
+    list-style:none;
+  }
+  .nav-links a{
+    position:relative;
+    font-size:14.5px;
+    color:var(--text-dim);
+    font-weight:500;
+    padding-bottom:6px;
+    transition:color .25s, text-shadow .25s;
+  }
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0; right:0; bottom:-1px;
+    margin:0 auto;
+    width:0;
+    height:2px;
+    border-radius:2px;
+    background:linear-gradient(90deg, #fff, var(--blue-light));
+    box-shadow:0 0 10px 1px rgba(255,255,255,0.65), 0 0 18px 2px rgba(79,140,255,0.5);
+    transition:width .25s ease;
+  }
+  .nav-links a:hover, .nav-links a.active{
+    color:var(--text);
+    text-shadow:0 0 14px rgba(255,255,255,0.45);
+  }
+  .nav-links a:hover::after, .nav-links a.active::after{width:100%;}
+  .nav-hire-item{display:none;}
+  .nav-hire-btn{
+    padding:7px 16px;
+    font-size:13px;
+  }
+  .nav-hire-btn::after{display:none;}
+  .nav-cta{
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-weight:600;
+    font-size:14.5px;
+    padding:11px 22px;
+    border-radius:9px;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:transform .2s, box-shadow .2s, background .2s;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg, var(--blue), #1d4fe0);
+    color:#fff;
+    box-shadow:0 6px 20px rgba(47,107,255,0.35);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(47,107,255,0.45);}
+  .btn-outline{
+    background:transparent;
+    color:#fff;
+    border:1px solid rgba(255,255,255,0.18);
+  }
+  .btn-outline:hover{background:rgba(255,255,255,0.06);}
+  .nav-toggle{display:none;background:none;border:none;color:#fff;font-size:26px;cursor:pointer;}
+
+  /* ===== Hero ===== */
+  .hero{
+    padding:64px 0 70px;
+  }
+  .hero-inner{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:40px;
+    align-items:center;
+  }
+  .badge{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px 16px;
+    font-size:12.5px;
+    color:var(--text-dim);
+    border:1px solid var(--border);
+    border-radius:30px;
+    padding:9px 18px;
+    margin-bottom:26px;
+  }
+  .badge-item{display:flex;align-items:center;gap:7px;white-space:nowrap;}
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);flex-shrink:0;}
+  .hero h1{
+    font-size:46px;
+    font-weight:800;
+    line-height:1.18;
+    letter-spacing:-0.5px;
+    margin-bottom:18px;
+  }
+  .hero h1 .accent{color:var(--blue-light);}
+  .hero p.lead{
+    color:var(--text-dim);
+    font-size:16px;
+    max-width:480px;
+    margin-bottom:30px;
+  }
+  .hero-buttons{
+    display:flex;
+    gap:14px;
+    margin-bottom:32px;
+    flex-wrap:wrap;
+  }
+  .btn-lg{padding:13px 26px;font-size:15px;}
+  .socials{
+    display:flex;
+    gap:26px;
+    flex-wrap:wrap;
+  }
+  .socials a{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    color:var(--text-dim);
+    transition:color .2s;
+  }
+  .socials a:hover{color:#fff;}
+  .socials svg{width:17px;height:17px;flex-shrink:0;}
+
+  .hero-photo-wrap{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:420px;
+  }
+  .glow-bg{
+    position:absolute;
+    width:380px;
+    height:380px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(47,107,255,0.45), rgba(124,92,255,0.15) 55%, transparent 75%);
+    filter:blur(10px);
+    z-index:0;
+  }
+  .photo-frame{
+    position:relative;
+    z-index:2;
+    width:300px;
+    height:380px;
+    border-radius:160px 160px 30px 30px;
+    overflow:hidden;
+    background:linear-gradient(160deg,#1c2540,#0b0f1d);
+    border:1px solid rgba(255,255,255,0.08);
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+  }
+  .photo-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:top center;
+  }
+  .photo-frame .placeholder-icon{
+    width:60%;
+    opacity:0.25;
+  }
+  .float-icon{
+    position:absolute;
+    width:54px;
+    height:54px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:15px;
+    z-index:3;
+    border:1px solid rgba(255,255,255,0.12);
+    backdrop-filter:blur(6px);
+    animation:floaty 4s ease-in-out infinite;
+  }
+  @keyframes floaty{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+  }
+  -pr{
+    top:14%; left:2%;
+    background:rgba(0,77,255,0.18);
+    color:#3a86ff;
+  }
+  .icon-pr{
+    top:14%; left:2%;
+    background:rgba(0,77,255,0.18);
+    color:#3a86ff;
+  }
+  .icon-ae{
+    top:8%; right:6%;
+    background:rgba(153,73,255,0.18);
+    color:#b388ff;
+    animation-delay:.5s;
+  }
+  .icon-code{
+    top:48%; right:4%;
+    background:rgba(47,107,255,0.18);
+    color:#5b9dff;
+    animation-delay:1s;
+  }
+  .hero-photo-wrap{overflow:visible;}
+  .hero{overflow-x:hidden;}
+  .star{
+    position:absolute;
+    width:4px;height:4px;
+    background:#fff;
+    border-radius:50%;
+    opacity:0.7;
+    box-shadow:0 0 6px #fff;
+  }
+
+  /* ===== Section base ===== */
+  section{
+    padding:34px 0;
+    background:var(--bg);
+    position:relative;
+    z-index:1;
+    scroll-margin-top:84px;
+  }
+  .card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:30px;
+  }
+
+  /* ===== About + What I Do ===== */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+    align-items:start;
+  }
+  .about-card h3{
+    font-size:24px;
+    font-weight:700;
+    margin-bottom:16px;
+    line-height:1.3;
+  }
+  .about-card h3 .accent{color:var(--blue-light);}
+  .about-card p{
+    color:var(--text-dim);
+    font-size:14.5px;
+    margin-bottom:14px;
+  }
+  .trophy-box{
+    margin-top:20px;
+    background:var(--bg-card-2);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .trophy-box .emoji{font-size:26px;}
+  .trophy-box .title{color:var(--blue-light);font-weight:600;font-size:14px;margin-bottom:6px;}
+  .trophy-box li{list-style:none;font-size:13px;color:var(--text-dim);}
+  .trophy-box ul{list-style:none;}
+
+  .whatido-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:18px;
+    align-content:center;
+  }
+  .wi-item{}
+  .wi-icon{
+    width:46px;height:46px;
+    border-radius:50%;
+    background:var(--bg-card-2);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:14px;
+    border:1px solid var(--border);
+  }
+  .wi-icon svg{width:20px;height:20px;}
+  .wi-item h4{font-size:15px;margin-bottom:7px;font-weight:700;}
+  .wi-item p{font-size:13px;color:var(--text-dim);}
+
+  /* ===== Skills ===== */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:22px;
+  }
+  .skill-card{
+    position:relative;
+    overflow:hidden;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .skill-card::before{
+    content:'';
+    position:absolute;
+    top:0; left:0; right:0;
+    height:3px;
+    background:linear-gradient(90deg, var(--blue-light), var(--purple));
+  }
+  .skill-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 16px 34px rgba(0,0,0,0.35);
+    border-color:rgba(124,92,255,0.35);
+  }
+  .skill-card h3{
+    font-size:17px;
+    margin-bottom:18px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .skill-card h3::before{
+    content:'';
+    width:9px;height:9px;
+    border-radius:50%;
+    background:var(--blue-light);
+    box-shadow:0 0 10px var(--blue-light);
+    flex-shrink:0;
+  }
+  .skill-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:11px 10px;
+    font-size:14px;
+    color:#dfe3ec;
+    border-radius:9px;
+    transition:background .2s, padding-left .2s;
+  }
+  .skill-row:hover{
+    background:rgba(255,255,255,0.05);
+    padding-left:14px;
+  }
+  .skill-tag{
+    width:28px;height:28px;
+    border-radius:7px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:10.5px;font-weight:800;
+    flex-shrink:0;
+  }
+  .tag-pr{background:#00264d;color:#3a8bff;box-shadow:0 0 10px rgba(58,139,255,0.35);}
+  .tag-ae{background:#2d0a4d;color:#b07dff;box-shadow:0 0 10px rgba(176,125,255,0.35);}
+  .tag-cc{background:#001a14;color:#21e6c1;font-size:13px;box-shadow:0 0 10px rgba(33,230,193,0.35);}
+  .tag-vn{background:#001a33;color:#39c0ed;box-shadow:0 0 10px rgba(57,192,237,0.35);}
+  .tag-html{background:#3a1500;color:#ff7043;box-shadow:0 0 10px rgba(255,112,67,0.35);}
+  .tag-css{background:#031f3a;color:#3a8bff;box-shadow:0 0 10px rgba(58,139,255,0.35);}
+  .tag-js{background:#332b00;color:#f3d62b;box-shadow:0 0 10px rgba(243,214,43,0.35);}
+  .tag-php{background:#1c0533;color:#9a7dd6;box-shadow:0 0 10px rgba(154,125,214,0.35);}
+  .dot-blue{width:8px;height:8px;border-radius:50%;background:var(--blue-light);box-shadow:0 0 8px var(--blue-light);flex-shrink:0;}
+
+  /* ===== Featured Projects ===== */
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:22px;
+  }
+  .section-head h2{font-size:13px;letter-spacing:1px;}
+  .view-all{
+    font-size:13.5px;
+    color:var(--blue-light);
+    font-weight:600;
+    display:flex;align-items:center;gap:6px;
+  }
+  .projects-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:18px;
+  }
+  .proj-card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .proj-thumb{
+    position:relative;
+    height:170px;
+    background:linear-gradient(135deg,#3a1c5c,#1a1030);
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  .proj-thumb img{width:100%;height:100%;object-fit:cover;}
+  .proj-thumb .badge-close{
+    position:absolute;top:10px;left:10px;
+    width:24px;height:24px;border-radius:6px;
+    background:rgba(0,0,0,0.5);
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;color:#fff;
+  }
+  .play-btn{
+    width:54px;height:54px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.9);
+    display:flex;align-items:center;justify-content:center;
+    z-index:2;
+    cursor:pointer;
+  }
+  .play-btn::after{
+    content:'';
+    border-left:14px solid #1a1030;
+    border-top:9px solid transparent;
+    border-bottom:9px solid transparent;
+    margin-left:3px;
+  }
+  .proj-body{padding:18px;flex:1;display:flex;flex-direction:column;}
+  .proj-tag{
+    display:inline-block;
+    font-size:11.5px;
+    font-weight:600;
+    color:var(--blue-light);
+    background:rgba(47,107,255,0.12);
+    padding:3px 10px;
+    border-radius:20px;
+    margin-bottom:10px;
+    width:fit-content;
+  }
+  .proj-body h4{font-size:15.5px;margin-bottom:8px;font-weight:700;}
+  .proj-body p{font-size:13px;color:var(--text-dim);margin-bottom:14px;flex:1;}
+  .proj-link{
+    font-size:13.5px;font-weight:600;color:var(--blue-light);
+    display:flex;align-items:center;gap:6px;
+  }
+  .proj-empty{
+    border:1px dashed rgba(255,255,255,0.15);
+    background:var(--bg-card-2);
+  }
+  .proj-empty .proj-body{
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    flex:1;
+  }
+  .proj-empty .proj-body p{flex:none;margin-bottom:0;}
+  .proj-empty .plus-circle{
+    width:50px;height:50px;border-radius:50%;
+    border:1.5px dashed rgba(255,255,255,0.25);
+    display:flex;align-items:center;justify-content:center;
+    font-size:22px;color:var(--text-dimmer);
+    margin-bottom:18px;
+    transition:transform .25s, border-color .25s, color .25s;
+  }
+  .proj-empty:hover .plus-circle{
+    transform:rotate(90deg) scale(1.08);
+    border-color:var(--blue-light);
+    color:var(--blue-light);
+  }
+  .proj-empty h4{font-size:15.5px;margin-bottom:8px;}
+  .proj-empty p{font-size:13px;color:var(--text-dimmer);}
+
+  /* ===== Process ===== */
+  .process-row{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:8px;
+  }
+  .process-step{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    flex:1;
+  }
+  .process-icon{
+    width:46px;height:46px;flex-shrink:0;
+    border-radius:50%;
+    background:var(--bg-card-2);
+    border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .process-icon svg{width:19px;height:19px;}
+  .process-num{font-size:11px;color:var(--blue-light);font-weight:700;margin-bottom:4px;}
+  .process-step h4{font-size:14.5px;margin-bottom:5px;font-weight:700;}
+  .process-step p{font-size:12.5px;color:var(--text-dim);}
+  .process-line{
+    flex-shrink:0;
+    width:60px;
+    height:1px;
+    background:repeating-linear-gradient(to right, var(--blue-light) 0 4px, transparent 4px 8px);
+    margin-top:23px;
+    position:relative;
+  }
+  .process-line::after{
+    content:'';
+    position:absolute;right:-3px;top:-2.5px;
+    width:6px;height:6px;border-radius:50%;
+    background:var(--blue-light);
+  }
+
+  /* ===== CTA ===== */
+  .cta-box{
+    background:linear-gradient(120deg, rgba(47,107,255,0.18), rgba(124,92,255,0.1));
+    border:1px solid rgba(124,92,255,0.25);
+    border-radius:var(--radius);
+    padding:36px 38px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .cta-box h3{font-size:25px;font-weight:700;margin-bottom:10px;}
+  .cta-box .sub{color:var(--text-dim);font-size:14px;max-width:440px;}
+  .cta-checks{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 26px;
+    font-size:13.5px;
+    color:#dfe3ec;
+  }
+  .cta-checks span{display:flex;align-items:center;gap:7px;}
+  .cta-checks .check{color:var(--green);font-weight:700;}
+
+  /* ===== Contact ===== */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:22px;
+  }
+  .contact-info h3{font-size:24px;font-weight:700;margin-bottom:12px;}
+  .contact-info p{color:var(--text-dim);font-size:14px;margin-bottom:26px;}
+  .contact-method{
+    display:flex;align-items:center;gap:12px;
+    margin-bottom:18px;
+    border-radius:10px;
+    padding:6px;
+    transition:background .2s, transform .2s;
+  }
+  .contact-method:hover{
+    background:rgba(255,255,255,0.05);
+    transform:translateX(3px);
+  }
+  .contact-method .ic{
+    width:38px;height:38px;border-radius:10px;
+    background:var(--bg-card-2);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .contact-method .ic svg{width:16px;height:16px;}
+  .contact-method .lbl{font-size:11.5px;color:var(--text-dimmer);}
+  .contact-method .val{font-size:13.5px;font-weight:600;}
+  .contact-methods{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px 10px;
+  }
+  .form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-bottom:16px;
+  }
+  input, select, textarea{
+    width:100%;
+    background:var(--bg-card-2);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:13px 16px;
+    color:#fff;
+    font-size:14px;
+    font-family:inherit;
+  }
+  input::placeholder, textarea::placeholder{color:var(--text-dimmer);}
+  textarea{resize:vertical;min-height:100px;margin-bottom:18px;}
+  select{appearance:none;}
+  .submit-btn{width:100%;justify-content:center;}
+
+  /* ===== Footer ===== */
+  footer{
+    border-top:1px solid var(--border);
+    padding:22px 0;
+  }
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:12.5px;
+    color:var(--text-dimmer);
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width:980px){
+    .about-grid, .contact-grid{grid-template-columns:1fr;}
+    .whatido-grid{grid-template-columns:1fr 1fr;}
+    .skills-grid{grid-template-columns:1fr;}
+    .projects-grid{grid-template-columns:1fr 1fr;}
+    .process-row{flex-wrap:wrap;}
+    .process-line{display:none;}
+    .process-step{flex-basis:45%;}
+  }
+  @media (max-width:860px){
+    .hero-inner{grid-template-columns:1fr;}
+    .hero-photo-wrap{order:-1;min-height:340px;}
+    .hero h1{font-size:36px;}
+    .nav-inner{flex-wrap:wrap; row-gap:12px;}
+    .nav-links{
+      order:3;
+      width:100%;
+      gap:22px;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+      padding-bottom:2px;
+      mask-image:linear-gradient(to right, transparent, #000 14px, #000 calc(100% - 14px), transparent);
+    }
+    .nav-links::-webkit-scrollbar{display:none;}
+    .nav-links li{flex-shrink:0;}
+    .nav-toggle{display:none;}
+    .nav-hire-item{display:flex; align-items:center;}
+    .nav-cta{display:none;}
+    section{scroll-margin-top:128px;}
+  }
+  @media (max-width:600px){
+    .whatido-grid{grid-template-columns:1fr;}
+    .projects-grid{grid-template-columns:1fr;}
+    .contact-methods{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .cta-checks{grid-template-columns:1fr;}
+    .cta-box{flex-direction:column;align-items:flex-start;}
+    .process-step{flex-basis:100%;}
+    .hero h1{font-size:30px;}
+    .nav-cta .btn-outline{display:none;}
+    .footer-inner{flex-direction:column;text-align:center;}
+    .section-head{flex-direction:column;align-items:flex-start;gap:8px;}
+    .nav-links{gap:18px;}
+    .nav-links a{font-size:13.5px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">Vishwash <span>Dahal</span></div>
+    <ul class="nav-links">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li class="nav-hire-item"><a href="#contact" class="btn btn-primary nav-hire-btn">Hire Me ➤</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary">Hire Me ➤</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="container hero-inner">
+    <div>
+      <div class="badge">
+        <span class="badge-item"><span class="dot"></span>Available for Freelance</span>
+        <span class="badge-item"><span class="dot"></span>Remote</span>
+        <span class="badge-item"><span class="dot"></span>Full-time</span>
+        <span class="badge-item"><span class="dot"></span>Internship</span>
+        <span class="badge-item"><span class="dot"></span>Collaboration</span>
+      </div>
+      <h1>I Create Visual Stories<br>&amp; Build <span class="accent">Digital Experiences</span></h1>
+      <p class="lead">I'm a Video Editor and Web Developer who combines creativity with code to craft engaging content and powerful websites.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary btn-lg">Hire Me ➤</a>
+        <a href="#projects" class="btn btn-outline btn-lg">View My Work ▶</a>
+      </div>
+      <div class="socials">
+        <a href="mailto:thebishwash@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+          Email
+        </a>
+        <a href="https://www.linkedin.com/in/vishwash-dahal" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0H5a5 5 0 0 0-5 5v14a5 5 0 0 0 5 5h14a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5zM8 19H5V9h3zM6.5 7.7A1.7 1.7 0 1 1 8.2 6a1.7 1.7 0 0 1-1.7 1.7zM20 19h-3v-5.2c0-1.2-.4-2-1.5-2a1.7 1.7 0 0 0-1.6 1.1 2 2 0 0 0-.1.8V19h-3V9h3v1.3a3.3 3.3 0 0 1 3-1.6c2.1 0 3.7 1.4 3.7 4.4z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://www.instagram.com/vishh.washh" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.7" fill="currentColor"/></svg>
+          Instagram
+        </a>
+        <a href="https://wa.me/+9779743848968" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 0 0-10.4 18l-1.1 4 4.2-1.1A12 12 0 1 0 12 0zm0 22a10 10 0 0 1-5.1-1.4l-.4-.2-2.8.7.8-2.7-.2-.4A10 10 0 1 1 12 22zm5.5-7.5c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1l-.9 1.1c-.2.2-.3.2-.6.1a8 8 0 0 1-3.8-3.3c-.2-.3-.1-.5.1-.6l.7-.8c.1-.2.1-.4 0-.6L9.6 8c-.2-.4-.4-.3-.6-.3h-.5c-.2 0-.5.1-.7.3-.2.2-1 1-.7 2.4.3 1.4 1.8 3.4 2 3.6.2.2 2.2 3 5.4 4.1 3.1 1.1 3.1.7 3.7.6.5-.1 1.7-.7 1.9-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
+          WhatsApp
+        </a>
+        <a href="https://github.com/vishwashhh" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.8.1-.8 1.3.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 0z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-photo-wrap">
+      <div class="glow-bg"></div>
+      <div class="float-icon icon-pr"><img src="Premiere.png" style="width:62px;height:62px;border-radius:8px;object-fit:cover;"></div>
+<div class="float-icon icon-ae"><img src="AfterEffect.png" style="width:62px;height:62px;border-radius:8px;object-fit:cover;"></div>
+      <div class="float-icon icon-code">&lt;/&gt;</div>
+      <div class="star" style="top:5%; left:30%;"></div>
+      <div class="star" style="top:60%; left:0%;"></div>
+      <div class="star" style="top:80%; right:20%;"></div>
+      <div class="star" style="top:20%; right:30%;"></div>
+      <div class="photo-frame">
+        <img src="Vishwash.png" alt="Vishwash Dahal">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT + WHAT I DO -->
+<section id="about">
+  <div class="container about-grid">
+    <div class="card about-card">
+      <span class="eyebrow">ABOUT ME</span>
+      <h3>I Edit Stories.<br>I Build <span class="accent">Experiences</span>.</h3>
+      <p>Hi, I'm Vishwash. I create videos that win awards and websites that actually work.
+         <p>I'm a creative, adaptive digital creator who loves wearing multiple hats. Need someone to script, direct, and edit a high-converting video campaign? I've done it. Need a responsive web layout prototyped in Figma and developed in VS Code? I do that too.</p>
+     <p>As a natural social chameleon, I easily sync with any team dynamic, bringing a high-energy, fun, and deeply collaborative approach to solving creative problems.</p>
+      <div class="trophy-box">
+        <div class="emoji">🏆</div>
+        <div>
+          <div class="title">College Fest Video Competition</div>
+          <ul>
+            <li>• 4th Place – Year 1</li>
+            <li>• 1st Place Winner – Year 2</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="eyebrow">WHAT I DO</span>
+      <div class="whatido-grid">
+        <div class="wi-item">
+          <div class="wi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5b9dff" stroke-width="2"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3"/></svg></div>
+          <h4>Video Editing</h4>
+          <p>Crafting engaging videos that tell stories and grab attention.</p>
+        </div>
+        <div class="wi-item">
+          <div class="wi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5b9dff" stroke-width="2"><polyline points="8 6 2 12 8 18"/><polyline points="16 6 22 12 16 18"/></svg></div>
+          <h4>Web Development</h4>
+          <p>Building responsive, fast and modern websites that perform.</p>
+        </div>
+        <div class="wi-item">
+          <div class="wi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5b9dff" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.7" fill="#5b9dff"/></svg></div>
+          <h4>Creative Design</h4>
+          <p>Designing visuals that communicate ideas beautifully.</p>
+        </div>
+        <div class="wi-item">
+          <div class="wi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2"><path d="M20 12V8a2 2 0 0 0-2-2h-5L9 2 5 6H4a2 2 0 0 0-2 2v4"/><rect x="2" y="12" width="20" height="9" rx="2"/></svg></div>
+          <h4>Problem Solving</h4>
+          <p>Solving problems with smart and efficient solutions.</p>
+        </div>
+        <div class="wi-item">
+          <div class="wi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <h4>Fast Learning</h4>
+          <p>Quick to learn, adapt and deliver high-quality results.</p>
+        </div>
+        <div class="wi-item">
+          <div class="wi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5b9dff" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3-5 7-5s7 1.7 7 5"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14c2.8 0 5 1.5 5 4.5"/></svg></div>
+          <h4>Client Focused</h4>
+          <p>Understanding needs and delivering beyond expectations.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <span class="eyebrow" style="margin-bottom:18px;">MY SKILLS</span>
+    <div class="skills-grid">
+      <div class="card skill-card">
+        <h3>Video Editing</h3>
+        <div class="skill-row"><span class="skill-tag tag-pr"><img src="Premiere.png" style="width:22px;height:22px;border-radius:5px;object-fit:cover;"></span> Adobe Premiere Pro</div>
+        <div class="skill-row"><span class="skill-tag tag-ae"><img src="AfterEffect.png" style="width:22px;height:22px;border-radius:5px;object-fit:cover;"></span> After Effects</div>
+        <div class="skill-row"><span class="skill-tag tag-cc"><img src="CapCut.jpg" style="width:28px;height:28px;border-radius:5px;object-fit:cover;"></span> CapCut</div>
+        <div class="skill-row"><span class="skill-tag tag-vn"><img src="VN.jpg" style="width:28px;height:28px;border-radius:5px;object-fit:cover;"></span> VN Editor</div>
+      </div>
+      <div class="card skill-card">
+        <h3>Creative Work</h3>
+        <div class="skill-row"><span class="dot-blue"></span> Reels / Shorts</div>
+        <div class="skill-row"><span class="dot-blue"></span> YouTube Videos</div>
+        <div class="skill-row"><span class="dot-blue"></span> Documentary</div>
+        <div class="skill-row"><span class="dot-blue"></span> Commercial / Promotional</div>
+        <div class="skill-row"><span class="dot-blue"></span> Motion Graphics</div>
+        <div class="skill-row"><span class="dot-blue"></span> Gaming Videos</div>
+        <div class="skill-row"><span class="dot-blue"></span> Color Grading (Basic)</div>
+        <div class="skill-row"><span class="dot-blue"></span> All Types of Editing</div>
+      </div>
+      <div class="card skill-card">
+        <h3>Web Development</h3>
+        <div class="skill-row"><span class="skill-tag tag-html"><img src="HTML.png" style="width:25px;height:25px;border-radius:5px;object-fit:cover;"></span>HTML</div>
+        <div class="skill-row"><span class="skill-tag tag-css"><img src="CSS.png" style="width:25px;height:25px;border-radius:5px;object-fit:cover;"></span>CSS</div>
+        <div class="skill-row"><span class="skill-tag tag-js"><img src="JS.png" style="width:26px;height:26px;border-radius:5px;object-fit:cover;"></span>Java Script</div>
+        <div class="skill-row"><span class="skill-tag tag-php"><img src="PHP.png" style="width:22px;height:22px;border-radius:5px;object-fit:cover;"></span>PHP</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" style="margin-bottom:0;">FEATURED PROJECTS</span>
+      <a href="#" class="view-all">View All Projects →</a>
+    </div>
+    <div class="projects-grid">
+      <a href="https://drive.google.com/drive/folders/1XdChIR5tLI2-iLDhZSa2qLBMhlV5GVTa" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+  <div class="proj-card" style="cursor:pointer;">
+    <div class="proj-thumb" style="background:linear-gradient(135deg,#7b2ff7,#1a0e33);">
+      <img src="tvideo.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
+      <div class="play-btn"></div>
+    </div>
+    <div class="proj-body">
+      <span class="proj-tag">Video Editing</span>
+      <h4>College Promotional Video</h4>
+      <p>Award winning promotional video created for college fest.</p>
+      <span class="proj-link">Watch Video ↗</span>
+    </div>
+  </div>
+</a>
+     <div class="proj-card">
+  <div class="proj-thumb" style="background:linear-gradient(135deg,#7b2ff7,#1a0e33);">
+   <img src="tport.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
+  </div>
+  <div class="proj-body">
+    <span class="proj-tag">Web Development</span>
+    <h4>Portfolio Website</h4>
+    <p>A fully functional website designed and developed for my portfolio.</p>
+    <a class="proj-link" href="#">Live Preview ↗</a>
+  </div>
+</div>
+      <div class="proj-card proj-empty">
+        <div class="proj-body">
+          <div class="plus-circle">+</div>
+          <h4>Your Project<br>Could Be Here</h4>
+          <p>Let's create something amazing together.</p>
+        </div>
+      </div>
+      <div class="proj-card proj-empty">
+        <div class="proj-body">
+          <div class="plus-circle">+</div>
+          <h4>Your Project<br>Could Be Here</h4>
+          <p>Let's create something amazing together.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container card">
+    <span class="eyebrow" style="margin-bottom:18px;">MY PROCESS</span>
+    <div class="process-row">
+      <div class="process-step">
+        <div class="process-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5b9dff" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/><path d="M16 3l2 2-2 2" stroke="#facc15"/></svg></div>
+        <div>
+          <div class="process-num">01</div>
+          <h4>Understand</h4>
+          <p>I listen carefully to your ideas and requirements.</p>
+        </div>
+      </div>
+      <div class="process-line"></div>
+      <div class="process-step">
+        <div class="process-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5b9dff" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+        <div>
+          <div class="process-num">02</div>
+          <h4>Plan</h4>
+          <p>I plan the best approach to bring your idea to life.</p>
+        </div>
+      </div>
+      <div class="process-line"></div>
+      <div class="process-step">
+        <div class="process-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5b9dff" stroke-width="2"><circle cx="12" cy="8" r="3"/><path d="M5 20c0-3.3 3-5.5 7-5.5s7 2.2 7 5.5"/></svg></div>
+        <div>
+          <div class="process-num">03</div>
+          <h4>Create</h4>
+          <p>I create with creativity and attention to detail.</p>
+        </div>
+      </div>
+      <div class="process-line"></div>
+      <div class="process-step">
+        <div class="process-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5b9dff" stroke-width="2"><path d="M4 4h16v12H4z"/><path d="m4 16 4-4 3 3 5-6 4 4"/></svg></div>
+        <div>
+          <div class="process-num">04</div>
+          <h4>Deliver</h4>
+          <p>I deliver high quality work on time.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="container">
+    <div class="cta-box">
+      <div>
+        <h3>Let's Work Together 🤝</h3>
+        <p class="sub">I'm available for freelance projects, remote work, internships, full-time opportunities and collaborations.</p>
+      </div>
+      <div class="cta-checks">
+        <span><span class="check">✔</span> Freelance Projects</span>
+        <span><span class="check">✔</span> Full-time Opportunities</span>
+        <span><span class="check">✔</span> Remote Work</span>
+        <span><span class="check">✔</span> Creative Collaborations</span>
+        <span><span class="check">✔</span> Internship</span>
+      </div>
+      <a href="#contact" class="btn btn-primary btn-lg">Hire Me ➤</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container card contact-grid">
+    <div class="contact-info">
+      <span class="eyebrow">LET'S CONNECT</span>
+      <h3>Have a project in mind?</h3>
+      <p>Feel free to reach out. I'd love to hear your idea and bring it to life.</p>
+      <div class="contact-methods">
+        <a class="contact-method" href="mailto:thebishwash@gmail.com">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#5b9dff" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></div>
+          <div><div class="lbl">Email</div><div class="val">thebishwash@gmail.com</div></div>
+        </a>
+        <a class="contact-method" href="https://www.linkedin.com/in/vishwash-dahal" target="_blank" rel="noopener">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#5b9dff"><path d="M19 0H5a5 5 0 0 0-5 5v14a5 5 0 0 0 5 5h14a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5zM8 19H5V9h3zM6.5 7.7A1.7 1.7 0 1 1 8.2 6a1.7 1.7 0 0 1-1.7 1.7zM20 19h-3v-5.2c0-1.2-.4-2-1.5-2a1.7 1.7 0 0 0-1.6 1.1 2 2 0 0 0-.1.8V19h-3V9h3v1.3a3.3 3.3 0 0 1 3-1.6c2.1 0 3.7 1.4 3.7 4.4z"/></svg></div>
+          <div><div class="lbl">LinkedIn</div><div class="val">vishwash-dahal</div></div>
+        </a>
+        <a class="contact-method" href="https://www.instagram.com/vishh.washh" target="_blank" rel="noopener">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#5b9dff" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.7" fill="#5b9dff"/></svg></div>
+          <div><div class="lbl">Instagram</div><div class="val">@vishh.washh</div></div>
+        </a>
+        <a class="contact-method" href="https://github.com/vishwashhh" target="_blank" rel="noopener">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#5b9dff"><path d="M12 0a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.8.1-.8 1.3.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 0z"/></svg></div>
+          <div><div class="lbl">GitHub</div><div class="val">vishwashhh</div></div>
+        </a>
+        <a class="contact-method" href="https://wa.me/+9779743848968" target="_blank" rel="noopener">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="#5b9dff"><path d="M12 0a12 12 0 0 0-10.4 18l-1.1 4 4.2-1.1A12 12 0 1 0 12 0zm0 22a10 10 0 0 1-5.1-1.4l-.4-.2-2.8.7.8-2.7-.2-.4A10 10 0 1 1 12 22zm5.5-7.5c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1l-.9 1.1c-.2.2-.3.2-.6.1a8 8 0 0 1-3.8-3.3c-.2-.3-.1-.5.1-.6l.7-.8c.1-.2.1-.4 0-.6L9.6 8c-.2-.4-.4-.3-.6-.3h-.5c-.2 0-.5.1-.7.3-.2.2-1 1-.7 2.4.3 1.4 1.8 3.4 2 3.6.2.2 2.2 3 5.4 4.1 3.1 1.1 3.1.7 3.7.6.5-.1 1.7-.7 1.9-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg></div>
+          <div><div class="lbl">WhatsApp</div><div class="val">+977 9743848968</div></div>
+        </a>
+      </div>
+    </div>
+
+    <form onsubmit="event.preventDefault(); alert('Message sent! (demo form)');">
+      <div class="form-row">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Email Address" required>
+      </div>
+      <div class="form-row">
+        <select>
+          <option value="">Project Type</option>
+          <option>Video Editing</option>
+          <option>Web Development</option>
+          <option>Both</option>
+          <option>Other</option>
+        </select>
+        <input type="text" placeholder="Your Budget (Optional)">
+      </div>
+      <textarea placeholder="Project Description" required></textarea>
+      <button type="submit" class="btn btn-primary submit-btn">Send Message ➤</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© Vishwash Dahal. All Rights Reserved.</div>
+    <div>Crafting stories. Building experiences. ✈</div>
+    <div>Designed &amp; Built with ❤ by Vishwash Dahal</div>
+  </div>
+</footer>
+
+</body>
+</html>
