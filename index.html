@@ -1044,22 +1044,23 @@
       </div>
     </div>
 
-    <form onsubmit="event.preventDefault(); alert('Message sent! (demo form)');">
+   <form name="contact" method="POST" data-netlify="true">
+   <input type="hidden" name="form-name" value="contact">
       <div class="form-row">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Email Address" required>
+       <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
       </div>
       <div class="form-row">
-        <select>
+        <select name="project-type">
           <option value="">Project Type</option>
           <option>Video Editing</option>
           <option>Web Development</option>
           <option>Both</option>
           <option>Other</option>
         </select>
-        <input type="text" placeholder="Your Budget (Optional)">
+       <input type="text" name="budget" placeholder="Your Budget (Optional)">
       </div>
-      <textarea placeholder="Project Description" required></textarea>
+     <textarea name="message" placeholder="Project Description" required></textarea>
       <button type="submit" class="btn btn-primary submit-btn">Send Message ➤</button>
     </form>
   </div>
